@@ -1,0 +1,97 @@
+import { TestBed } from '@angular/core/testing';
+
+import { JwtHandlerService } from './jwt-handler.service';
+
+describe('JwtHandlerService', () => {
+  let service: JwtHandlerService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(JwtHandlerService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should decode a valid token', () => {
+    spyOn(service, 'decodeToken').and.returnValue({
+      sub: '1234567890',
+      name: 'John Doe',
+      iat: 1516239022
+    });
+
+    const token = 'dummy.token';
+    const decodedToken = service.decodeToken(token);
+    expect(decodedToken).toBeTruthy();
+    expect(decodedToken?.['sub']).toBe('1234567890');
+    expect(decodedToken?.['name']).toBe('John Doe');
+    expect(decodedToken?.['iat']).toBe(1516239022);
+  });
+
+  it('should return null for invalid token', () => {
+    const invalidToken = 'invalid.token';
+    const decodedToken = service.decodeToken(invalidToken);
+    expect(decodedToken).toBeNull();
+  });
+
+  it('should correctly check if a token is expired', () => {
+    spyOn(service, 'isTokenExpired').and.returnValue(true);
+    const expiredToken = "dummy.token";
+    expect(service.isTokenExpired(expiredToken)).toBe(true);
+  });
+
+  it('should return true if token audience matches expected audience', () => {
+    spyOn(service, 'decodeToken').and.returnValue({ aud: 'expectedAudience' });
+
+    const token = 'dummy.token';
+    const expectedAudience = 'expectedAudience';
+
+    expect(service.isTokenAudienceValid(token, expectedAudience)).toBe(true);
+  });
+
+  it('should return false if token audience does not match expected audience', () => {
+    spyOn(service, 'decodeToken').and.returnValue({ aud: 'unexpectedAudience' });
+
+    const token = 'dummy.token';
+    const expectedAudience = 'expectedAudience';
+
+    expect(service.isTokenAudienceValid(token, expectedAudience)).toBe(false);
+  });
+
+  it('should return false if token has no audience claim', () => {
+    spyOn(service, 'decodeToken').and.returnValue({});
+
+    const token = 'dummy.token';
+    const expectedAudience = 'expectedAudience';
+
+    expect(service.isTokenAudienceValid(token, expectedAudience)).toBe(false);
+  });
+
+  it('should return true if token has all required claims', () => {
+    spyOn(service, 'decodeToken').and.returnValue({ sub: '123', role: 'admin' });
+
+    const token = 'dummy.token';
+    const requiredClaims = ['sub', 'role'];
+
+    expect(service.hasRequiredClaims(token, requiredClaims)).toBe(true);
+  });
+
+  it('should return false if token is missing required claims', () => {
+    spyOn(service, 'decodeToken').and.returnValue({ sub: '123' });
+
+    const token = 'dummy.token';
+    const requiredClaims = ['sub', 'role'];
+
+    expect(service.hasRequiredClaims(token, requiredClaims)).toBe(false);
+  });
+
+  it('should return false if token is invalid', () => {
+    spyOn(service, 'decodeToken').and.returnValue(null);
+
+    const token = 'dummy.token';
+    const requiredClaims = ['sub', 'role'];
+
+    expect(service.hasRequiredClaims(token, requiredClaims)).toBe(false);
+  });
+});

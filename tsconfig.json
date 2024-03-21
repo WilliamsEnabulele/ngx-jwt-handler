@@ -10,6 +10,11 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
+    "paths": {
+      "ngx-jwt-handler": [
+        "./dist/ngx-jwt-handler"
+      ]
+    },
     "sourceMap": true,
     "declaration": false,
     "experimentalDecorators": true,
