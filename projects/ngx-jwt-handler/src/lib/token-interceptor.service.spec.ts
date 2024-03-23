@@ -29,6 +29,7 @@ describe('TokenInterceptor', () => {
 
   afterEach(() => {
     httpTestingController.verify();
+    session.remove('accessToken');
   });
 
   it('should add token to the header when token is present', () => {

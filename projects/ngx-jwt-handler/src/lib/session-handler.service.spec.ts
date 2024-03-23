@@ -10,6 +10,10 @@ describe('SessionHandlerService', () => {
     service = TestBed.inject(SessionHandlerService);
   });
 
+  afterEach(() => {
+    service.remove('testKey');
+  })
+
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
@@ -17,6 +21,7 @@ describe('SessionHandlerService', () => {
   it('should add data to the session', () => {
     service.add('testKey', { data: 'testValue' });
     expect(sessionStorage.getItem('testKey')).toEqual(JSON.stringify({ data: 'testValue' }));
+
   });
 
   it('should remove data from the session', () => {
