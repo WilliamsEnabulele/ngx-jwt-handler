@@ -1,6 +1,6 @@
 {
-  "name": "jwt",
-  "version": "0.0.0",
+  "name": "ngx-jwt-handler",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -18,7 +18,9 @@
     "@angular/platform-browser": "^17.0.0",
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
+    "memfs": "^4.8.0",
     "rxjs": "~7.8.0",
+    "string-width": "^4.2.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },
