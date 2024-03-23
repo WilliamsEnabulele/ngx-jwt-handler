@@ -1,14 +1,17 @@
-version: 2
+version: 2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.4.8
 
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/node:latest
+    - image: cimg/node:21.6.2-browsers
 
 jobs:
   test:
     <<: *defaults
     steps:
+      - browser-tools/install-browser-tools
       - checkout
 
       - restore_cache:
@@ -17,19 +20,20 @@ jobs:
             - v1-dependencies-
 
       - run: npm install
-      - run:
-          name: Run tests
-          command: npm test
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run:
+          name: Run tests
+          command: npm run test
+
       - persist_to_workspace:
           root: ~/repo
           paths: .
-  deploy:
+  publish:
     <<: *defaults
     steps:
       - attach_workspace:
@@ -43,13 +47,13 @@ jobs:
 
 workflows:
   version: 2
-  test-deploy:
+  ngx-jwt-handler-deploy:
     jobs:
       - test:
           filters:
             tags:
               only: /^v.*/
-      - deploy:
+      - publish:
           requires:
             - test
           filters:
