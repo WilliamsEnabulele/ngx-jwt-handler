@@ -15,7 +15,10 @@
     "JWT",
     "session management",
     "jwt interceptor",
-    "token handling"
+    "token handling",
+    "access token",
+    "angular jwt",
+    "angular interceptor"
   ],
   "author": "Williams Enabulele",
   "license": "MIT",
