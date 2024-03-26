@@ -46,19 +46,18 @@ workflows:
     jobs:
       - test:
           filters:
+            branches:
+              ignore: /.*/
             tags:
               only:
                 - /^v.*/
-            branches:
-              ignore:
-                - /.*/
       - Hold-for-Approval:
           type: approval
           requires:
             - test
       - publish:
           requires:
-            - test
+            - Hold-for-Approval
           filters:
             tags:
               only: /^v.*/
