@@ -4,6 +4,13 @@ import { JwtHandlerService } from './jwt-handler.service';
 
 describe('JwtHandlerService', () => {
   let service: JwtHandlerService;
+  const tokens = [
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyX2lzc3VlciIsInN1YiI6InN1YmplY3QiLCJhdWQiOiJhdWRpZW5jZSIsImV4cCI6MTY0OTc3NjY2NiwiaWF0IjoxNjQ5Nzc2MDY2fQ.VfUv8FKJSq7WJ8D0LHTQJ5IMQhghRQDrZa3xbrMJdAs",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyX2lzc3VlciIsInN1YiI6InN1YmplY3QiLCJhdWQiOiJhdWRpZW5jZSIsImV4cCI6MTY0OTc3NjY2NiwiaWF0IjoxNjQ5Nzc2MDY2fQ.VfUv8FKJSq7WJ8D0LHTQJ5IMQhghRQDrZa3xbrMJdAs",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyX2lzc3VlciIsInN1YiI6InN1YmplY3QiLCJhdWQiOiJhdWRpZW5jZSIsImV4cCI6MTY0OTc3NjY2NiwiaWF0IjoxNjQ5Nzc2MDY2fQ.VfUv8FKJSq7WJ8D0LHTQJ5IMQhghRQDrZa3xbrMJdAs",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyX2lzc3VlciIsInN1YiI6InN1YmplY3QiLCJhdWQiOiJhdWRpZW5jZSIsImV4cCI6MTY0OTc3NjY2NiwiaWF0IjoxNjQ5Nzc2MDY2fQ.VfUv8FKJSq7WJ8D0LHTQJ5IMQhghRQDrZa3xbrMJdAs",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ5b3VyX2lzc3VlciIsInN1YiI6InN1YmplY3QiLCJhdWQiOiJhdWRpZW5jZSIsImV4cCI6MTY0OTc3NjY2NiwiaWF0IjoxNjQ5Nzc2MDY2fQ.VfUv8FKJSq7WJ8D0LHTQJ5IMQhghRQDrZa3xbrMJdAs"
+  ];
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
@@ -13,6 +20,14 @@ describe('JwtHandlerService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  tokens.forEach((data, index) => {
+    it(`decode token with index ${index + 1}`, () => {
+      const decodedToken = service.decodeToken(data);
+      expect(decodedToken).toBeTruthy();
+    });
+  });
+
 
   it('should decode a valid token', () => {
     spyOn(service, 'decodeToken').and.returnValue({

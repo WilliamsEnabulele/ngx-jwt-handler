@@ -2,3 +2,6 @@
 /e2e
 /karma.conf.js
 /protractor.conf.js
+.angular
+.circleci
+.vscode
