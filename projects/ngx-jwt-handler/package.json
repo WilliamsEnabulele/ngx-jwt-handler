@@ -1,6 +1,27 @@
 {
   "name": "ngx-jwt-handler",
-  "version": "1",
+  "version": "1.0.4",
+  "homepage": "https://github.com/WilliamsEnabulele/jwt-handler/blob/main/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilliamsEnabulele/jwt-handler.git"
+  },
+  "keywords": [
+    "Angular",
+    "ngx",
+    "sessions",
+    "http",
+    "interceptor",
+    "JWT",
+    "session management",
+    "jwt interceptor",
+    "token handling",
+    "access token",
+    "angular jwt",
+    "angular interceptor"
+  ],
+  "author": "Williams Enabulele",
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^17.3.0",
     "@angular/core": "^17.3.0"
