@@ -29,6 +29,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test --source-map=false --watch=false"
   },
+  "files": [
+    "dist/*"
+  ],
   "private": false,
   "dependencies": {
     "@angular/animations": "^17.0.0",
