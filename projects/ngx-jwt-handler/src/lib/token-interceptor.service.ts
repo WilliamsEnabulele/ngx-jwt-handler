@@ -9,6 +9,7 @@ import { SessionHandlerService } from './session-handler.service';
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private session: SessionHandlerService) { }
+  
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.session.get('accessToken');
 

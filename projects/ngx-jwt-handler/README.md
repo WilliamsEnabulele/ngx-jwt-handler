@@ -63,7 +63,7 @@ The JWT interceptor automatically adds JWT tokens to HTTP requests.
 import { TokenInterceptor } from 'ngx-jwt-handler';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-// Include TokenInterceptor in your providers array
+// Include TokenInterceptor in your providers array in your app module
 providers: [
   {
     provide: HTTP_INTERCEPTORS,
