@@ -1,4 +1,5 @@
 # ngx-jwt-handler
+![NPM Downloads](https://img.shields.io/npm/dw/ngx-jwt-handler?logo=npm) ![NPM Downloads](https://img.shields.io/npm/dm/ngx-jwt-handler?logo=npm) ![NPM Downloads](https://img.shields.io/npm/dy/ngx-jwt-handler?logo=npm)
 
 `ngx-jwt-handler` is an Angular library that provides services for managing JSON Web Tokens (JWT) and handling sessions in Angular applications. It includes a JWT handler service for decoding and managing JWT tokens, a session handler service for managing browser sessions, and an interceptor for adding JWT tokens to HTTP requests.
 
